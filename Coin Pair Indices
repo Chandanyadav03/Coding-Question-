@@ -1,0 +1,40 @@
+Question 1: Coin Pair Indices
+
+You are given an array of integers representing coin values and an integer target value. Find two different indices such that the sum of the coin values at those indices equals the target value. Return the indices of the two coins.
+
+Example:
+Input: coins = [2, 7, 11, 15]
+       target = 9
+
+Output: [0, 1]
+
+=========================================================================
+Python Code (Using Nested Loops)
+
+coins = [2, 7, 11, 15]
+target = 9
+
+for i in range(len(coins)):
+    for j in range(i + 1, len(coins)):
+
+        if coins[i] + coins[j] == target:
+            print([i, j])
+
+--------------------------------------------------------------------------
+
+-.Python Code Using HashMap
+
+coins = [2, 7, 11, 15]
+target = 9
+
+seen = {}
+
+for i in range(len(coins)):
+
+    complement = target - coins[i]
+
+    if complement in seen:
+        print([seen[complement], i])
+        break
+
+    seen[coins[i]] = i
