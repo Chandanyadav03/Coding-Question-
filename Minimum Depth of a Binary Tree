@@ -1,0 +1,48 @@
+Minimum Depth of a Binary Tree
+
+Given the root of a binary tree, return its minimum depth.
+The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
+
+A leaf node is a node with no left and right children.
+
+Example 1
+Input:
+       1
+      / \
+     2   3
+    /
+   4
+Output:
+       2
+
+==========================================================================
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def minDepth(root):
+
+    if root is None:
+        return 0
+
+    if root.left is None:
+        return 1 + minDepth(root.right)
+
+    if root.right is None:
+        return 1 + minDepth(root.left)
+
+    return 1 + min(minDepth(root.left), minDepth(root.right))
+
+
+# Create binary tree
+
+root = TreeNode(1)
+root.left = TreeNode(2)
+root.right = TreeNode(3)
+root.left.left = TreeNode(4)
+
+print(minDepth(root))
